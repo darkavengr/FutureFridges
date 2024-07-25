@@ -1,0 +1,53 @@
+﻿@page
+@model FutureFridgesCW.Pages.TrackModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager;
+@using FutureFridgesCW.Models;
+
+@{
+}
+<div class="pageTitle"> <h1>Track Items</h1> </div>
+
+
+
+<div class="add-container">
+    <section class="products">
+        <div class="products-list">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product Id</th>
+                        <th>ProductName</th>
+                        <th>Expiry Date</th>
+                        <th>User Email</th>
+                        <th>Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.UserList)
+                    {
+                        @foreach (var product in Model.ProductList)
+                        {
+
+                            @if (user.Email.ToLower() == product.userWhoInsertedProduct.ToLower())
+                            {
+                                System.Diagnostics.Debug.WriteLine(user.Email + " " + product.userWhoInsertedProduct);
+
+                                <tr>
+                                    <td>@product.ProductId</td>
+                                    <td>@product.ProductName</td>
+                                    <td>@product.expiryDate</td>
+                                    <td>@product.userWhoInsertedProduct</td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+                    
+            </table>
+        </div>
+    </section>
+</div>
+
+<script src="/js/tablesort.min.js"></script>
+<script>document.querySelector('.table-sortable').tsortable()</script>

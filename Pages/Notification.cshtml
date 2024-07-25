@@ -1,0 +1,43 @@
+﻿@page "{Message?}/{SendTo?}"
+@model FutureFridgesCW.Pages.NotificationModel
+@using Microsoft.AspNetCore.Identity
+@using FutureFridgesCW.Models
+@using Microsoft.AspNetCore.Mvc.RazorPages;
+@using Microsoft.EntityFrameworkCore;
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<div class="pageTitle">
+    <h1>Notifications </h1>
+</div>
+
+<div id="NoNotificationsMessage">
+
+
+    @ViewData["EmptyPage"]
+</div>
+
+   <section class="Notification-Section">
+
+        <div class="container">
+            <div class="notification">
+                @foreach (var notifications in Model.Notifications)
+                {
+                    <div class="notification-list expiry-notification">
+                        <div class="notification-content">
+                            <div>
+                                <div class="notification-message">
+                                    <p>@notifications.dateAndTimeSent.ToLongDateString()</p>
+                                    <p class="notifcation-description">@notifications.Message</p>
+                                    <p class="notifcation-description"><small>@notifications.dateAndTimeSent.ToLongTimeString()</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-delete"><a class="deleteMessage" asp-page-handler="Delete" asp-route-id="@notifications.Id"><i class="bx bx-trash"></i></a></div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+

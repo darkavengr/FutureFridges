@@ -1,0 +1,17 @@
+﻿@page
+@model FutureFridgesCW.Pages.OpenDoorModel
+@{
+}
+<h1 class="text-center">
+    <h1 class="display-4">Welcome to the Future Fridges page</h1>
+
+    <h1>
+
+        @ViewData["DriverPIN"]
+
+        @if (User.IsInRole("Driver"))
+        {
+
+                <a asp-page="/Index"> Generate new PIN</a>
+        }
+    </h1>

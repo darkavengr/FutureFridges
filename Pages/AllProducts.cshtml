@@ -1,0 +1,43 @@
+﻿@page
+@model FutureFridgesCW.Pages.AllProductsModel
+@{
+}
+
+<div id="pdf">
+    <div class="add-container">
+        <section class="products">
+            <div class="products-list">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>product name</th>
+                            <th>product quantity</th>
+                            <th>product expiry</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var action in Model.Products)
+                        {
+                            if(action.expiryDate <= DateTime.Now)
+                            {
+                                <tr>
+                                    <td>@action.ProductName</td>
+                                    <td>@action.quantity</td>
+                                    <td>@action.expiryDate</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+         
+            <button onclick="saveDiv('pdf','Title')">download</button>@*downloads the pdf*@
+
+                <button onclick="printDiv('pdf','Title')">print</button>@*displays the print pdf settings*@
+
+</div>
+            
+        </section>
+            </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="/js/site.js"></script>

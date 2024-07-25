@@ -1,0 +1,20 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="text-center">
+        <h1 class="display-4">Welcome to the Future Fridges page</h1>
+
+        @if (User.IsInRole("Driver"))
+        {
+
+            @ViewData["DriverPIN"]
+
+            <a asp-page="/Index"> Generate new PIN</a>
+        }
+        </h1>
+</div>

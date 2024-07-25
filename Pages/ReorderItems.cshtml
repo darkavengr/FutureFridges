@@ -1,0 +1,92 @@
+﻿@*@page
+@model FutureFridgesCW.Pages.ReorderItemsModel
+@{
+}
+
+<h2>Create Order</h2>
+<form method="post">    
+    <div>        
+        <div>            
+            <label for="OrderID">Order ID:</label>            
+            <input type="text" id="OrderID" name="OrderID" value="@Model.CreateOrder.OrderID" />        
+        </div>        
+        <div>            
+            <label for="OrderDate">Order Date:</label>            
+            <input type="text" id="OrderDate" name="OrderDate" value="@Model.CreateOrder.OrderDate" />
+        </div>        
+        <div>            
+            <label for="Status">Status:</label>            
+            <input type="text" id="Status" name="Status" value="@Model.CreateOrder.Status" value="Started" readonly/>
+        </div>        
+        <div>            
+            <label for="SupplierName">Supplier Name:</label>            
+            <input type="text" id="SupplierName" name="SupplierName" value="@Model.CreateOrder.SupplierName" />
+        </div>    
+        </div>
+    
+    <table>        
+        <thead>            
+            <tr>                
+                <th>Product Name</th>                
+                <th>Quantity</th>                
+                <th></th>            
+            </tr>        
+            </thead>        
+            <tbody>
+            @for (int i = 0; i < Model.CreateOrder.OrderItems.Count; i++)
+
+            {
+                                
+                <tr>                    
+                    <td>
+                        <input type="text" name="OrderItems[i].ProductName" value="@Model.CreateOrder.OrderItems[i].ProductName" />
+                    </td>                    
+                        <td>
+                        <input type="text" name="OrderItems[i].Quantity" value="@Model.CreateOrder.OrderItems[i].quantity" />
+                    </td>                    
+                            <td>                        
+                                <button type="button" onclick="removeOrderItem(this)">Remove</button>                    
+                                </td>                
+                                </tr>
+            }        
+            </tbody>    
+            </table>
+
+    <div>        
+        <button type="button" onclick="addOrderItem()">Add Product</button>    
+    </div>    
+        <div>        
+            <button type="submit">Save</button>    
+        </div>
+</form>
+<script>
+    document.getElementById("addButton").addEventListener("click", addOrderItem)
+    var orderItemIndex = @Model.CreateOrder.OrderItems.Count;
+    function addOrderItem() {
+        var table = document.querySelector("table tbody");
+        var newRow = `
+    <tr>
+        <td>
+            <input type="text" name="CreateOrder.OrderItems[${orderItemIndex}].ProductName" />
+        </td>
+        <td>
+            <input type="text" name="CreateOrder.OrderItems[${orderItemIndex}].quantity" />
+        </td>
+        <td>
+            <button type="button" onclick="removeOrderItem(this)">Remove</button>
+        </td>
+    </tr>
+    `;
+        table.insertAdjacentHTML("beforeend", newRow);
+        orderItemIndex++;
+    }
+    function removeOrderItem(removeButton) {
+        var row = removeButton.closest("tr");
+        row.remove();
+    }
+</script>
+<script src="/js/site.js"></script>
+
+
+
+*@

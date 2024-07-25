@@ -1,0 +1,58 @@
+﻿@model FutureFridgesCW.Pages.RemoveModel
+@{
+}
+
+<div class="pageTitle">
+    <h1>Remove Items</h1>
+</div>
+
+ <div id="pdf">
+  <div class="add-container">
+    <section class="products">
+        <div class="products-list">
+            <table class="table">
+                <thead>
+                    
+                    <tr>
+                        <th>product name</th>
+                        <th>Product quantity</th>
+                        <th>product expiry</th>
+                        <th>action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var action in Model.Products)
+                    {
+
+                        <tr>
+                            <td>@action.ProductName</td>
+                            <td>@action.quantity</td>
+                            <td>@action.expiryDate</td>
+                            <td class="rmactionBtns">
+
+                                    <a class="edit-btn" ,asp-page-handler="IncrementQuantity"masp-route-id="@action.ProductId">  <i class="fa-plus"></a>
+                                    <a class="edit-btn" asp-route-id="@action.ProductId",asp-page-handler="DecrementQuantity">  <i class="fa-minus"></a>
+
+                                    <a class="edit-btn" asp-route-id="@action.ProductId" asp-page="/Insert"> <i class="fas fa-edit"></i> Update </a>
+                                    <a class="edit-btn" asp-route-id="@action.ProductId",asp-page-handler="Delete">  <i class="fas fa-edit"></i> Delete </a>
+
+                            </td>
+                        </tr>
+                    }
+            </div>@*pdf end*@
+            
+
+                </tbody>
+            </table>
+            <button class="printBtn" onclick="saveDiv('pdf','Remove-Report')">download</button>@*downloads the pdf*@
+            <button class="printBtn" onclick="printDiv('pdf','Title')">print</button>@*displays the print pdf settings*@
+        </div>
+    </section>
+</div>
+
+    
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="/js/site.js"></script>
+

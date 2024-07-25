@@ -1,0 +1,59 @@
+﻿@page
+@model FutureFridgesCW.Pages.OrderItemModel
+@{
+}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<!-- custom styling -->
+<link rel="stylesheet" type="text/css" href="/css/form.css">
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+<div class="pageTitle">
+    <h1>New Order </h1>
+</div>
+
+<div class="container">
+    <div class="content">
+        <form method="post">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details"><label asp-for="@Model.CreateOrder.OrderID"></label></span>
+                    <input placeholder="Supplier ID" asp-for="@Model.CreateOrder.OrderID" readonly>
+                </div>
+
+                <div class="input-box">
+                    <span class="details"><label asp-for="@Model.CreateOrder.OrderDate"></label></span>
+                    <input placeholder="Supplier ID" asp-for="@Model.CreateOrder.OrderDate" runat="server">
+                </div>
+
+                <div class="input-box">
+                    <span class="details"><label asp-for="@Model.CreateOrder.SupplierName"></label></span>
+                    <input placeholder="Supplier Name" asp-for="@Model.CreateOrder.SupplierName" runat="server">
+                </div>
+
+                <div class="input-box">
+                    <span class="details"><label asp-for="@Model.CreateOrder.Status"></label></span>
+                    <input placeholder="Supplier ID" asp-for="@Model.CreateOrder.Status" runat="server">
+                </div>
+
+                <div class="input-box">
+                    <span class="details"><label asp-for="@Model.CreateOrder.ProductName"></label></span>
+                    <input type="text" class="form-control w_90" id="mobileb_no_1" asp-for="@Model.CreateOrder.ProductName" placeholder="Enter Product Name" required runat="server" />
+                </div>
+                <div class="input-box">
+                    <span class="details"> <label asp-for="@Model.CreateOrder.quantity" runat="server"></label> </span>
+                    <input type="text" class="form-control w_90" id="mobileb_no_1" asp-for="@Model.CreateOrder.quantity" placeholder="Enter Product Quantity" required runat="server" />
+                </div>
+
+                @ViewData["SubmitInformation"];
+
+                <a asp-page-handler="Back" class="btn btn-outline-lite py-0 add_new_frm_field_btn"><i class="fas fa-plus add_icon"></i> Back </a>
+                <div class="button">
+                    <input type="submit" value="Update">
+                </div>
+        </form>
+    </div>
+</div>

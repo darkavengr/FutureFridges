@@ -1,0 +1,59 @@
+﻿@page
+@model FutureFridgesCW.Pages.OrderModel
+@{
+}
+
+<div class="pageTitle">
+    <h1>Order </h1>
+</div>
+
+<div class="add-container">
+    <div class="theOrder">
+        <a asp-page="/OrderItems"> <span class="Ordersave-btn" id="newButton">New Order</span> </a>
+        <button class="orderReport" id="reportButton"><i class="bx bxs-file-pdf"></i></button>
+    </div>
+</div>
+
+<div id="pdf">@*pdf*@
+<section class="products">
+    <div class="products-list">
+        <table class="table table-sm table-striped table-sortable" style="table-layout: fixed;">
+            <thead>
+                <tr>
+                    <th data-sort="int">Order Number</torderReporth>
+                    <th data-sort="date">Order Date</th>
+                    <th>Order Status</th>
+                    <th data-sort="string">Order Supplier</th>
+                    <th>View Report</th>
+
+                </tr>
+            </thead>
+            @foreach (var action in Model.Order)
+                {
+
+                    
+                     <tr>
+                    <div id="pdf">
+                       <td>@action.OrderID</td>
+                       <td>@action.OrderDate</td>
+                       <td>@action.Status</td>
+                       <td>@action.SupplierName</td>
+                       <td >
+                            <button class="printBtn" onclick="saveDiv('pdf','Title')">download</button>@*downloads the pdf*@
+                            <button class="printBtn" onclick="printDiv('pdf','Title')">print</button>@*displays the print pdf settings*@
+                            
+                       </td>
+                        </div>
+                     </tr>          
+                   
+                }
+        </table>
+    </div>
+</div>@*end of pdf div*@
+</section>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>@*jquery for the pdf sizing and design*@
+<script src="/js/site.js"></script>
+

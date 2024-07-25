@@ -1,0 +1,124 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+<link rel="stylesheet" href="~/css/Register.css" asp-append-version="true" />
+
+<div class="pageTitle">
+    <h1> Register User</h1>
+</div>
+
+<div class="container">
+    <div class="content">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+
+            <div class="user-details">
+            <div class="input-box">
+                    <span class="details"> <label asp-for="Input.FullName">Full Name</label></span>
+                    <input asp-for="Input.FullName" class="form-control" autocomplete="username" aria-required="true" placeholder="Enter Full Name" />
+                    <span asp-validation-for="Input.FullName" class="text-danger"></span>
+            </div>
+
+            <div class="input-box">
+                    <span class="details"> <label asp-for="Input.UserName">User Name</label></span>
+                    <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="Ente Username" />
+                    <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+
+            <div class="input-box">
+                    <span class="details"> <label asp-for="Input.PhoneNumber">Phone Number</label></span>
+                    <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="username" aria-required="true" placeholder="Enter Phone Number" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="input-box">
+                    <span class="details"> <label asp-for="Input.Email">Email</label></span>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="Enter Email" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="input-box">
+                    <span class="details"> <label asp-for="Input.Password">Password</label></span>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Enter Password" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="input-box">
+                    <span class="details"> <label asp-for="Input.Password">Confirm Password</label></span>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="Confirm Password" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            </div>
+
+
+            <div class="gender-detail">
+                <input type="radio" asp-for="Input.Gender" value="Male" id="dot-1">
+                <input type="radio" asp-for="Input.Gender" value="Female" id="dot-2">
+                <input type="radio" asp-for="Input.Gender" value="Prefer not to say" id="dot-3">
+                <span class="gender-title">Gender</span>
+
+                <div class="category">
+
+                    <label for="dot-1" asp-for="Input.Gender" value="Male">
+                        <span class="dot one"></span>
+                        <span class="gender">Male</span>
+                    </label>
+
+                    <label for="dot-2" asp-for="Input.Gender" value="Female">
+                        <span class="dot two"></span>
+                        <span class="gender">Female</span>
+                    </label>
+
+                    <label for="dot-3" asp-for="Input.Gender" value="Prefer not to say">
+                        <span class="dot three"></span>
+                        <span class="gender">Prefer not to say</span>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="button">
+                    <input type="submit" value="Register" id="registerSubmit">
+@*                    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+*@            </div>
+        </form>
+    </div>
+ </div>
+
+   @* <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Use another service to register.</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            about setting up this ASP.NET application to support logging in via external services</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>*@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
